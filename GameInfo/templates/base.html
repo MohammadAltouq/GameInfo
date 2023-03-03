@@ -1,0 +1,27 @@
+
+<nav class="ct-nav">
+    <div>
+        <img src="../static/images/logo20.png">
+    </div>
+    <!--Nac Items -->
+    <div id="horizontal-list-wrapper">            
+        <ul id="horizontal-list">
+          <li><a href="{{ url_for('site.home') }}">Home</a></li>
+          {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('site.search') }}">Search</a> </li>
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                </a>
+                <ul class="dropdown-menu" >
+                    <li><a href="{{ url_for('site.profile') }}" class="dropdown-item">Profile</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}" class="dropdown-item ">Sign Out</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+              <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

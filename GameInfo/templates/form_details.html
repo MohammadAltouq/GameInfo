@@ -1,0 +1,8 @@
+<form method = "POST" >
+    {{ details_.hidden_tag() }}
+    <fieldset hidden>
+        {{ details_.id.label }}
+        {{ details_.id(class = "form-control", value=i) }}
+    </fieldset>
+    {{ details_.submit_button(class = "btn btn-primary btn-block") }}
+</form>

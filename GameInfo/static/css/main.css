@@ -1,0 +1,138 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #222;
+  }
+
+/* header */
+.ct-nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2e2e2e;
+    height: 60px;
+    border-bottom: solid 1px #191919;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+#horizontal-list-wrapper {
+    font-size: x-large;
+    display: flex;
+    align-items:center;
+}
+
+.ct-nav img {
+    height: 100%;
+    min-width: 60px;
+    max-width: 100%;
+    margin-left: 2vw;
+}
+
+ul#horizontal-list {
+
+    min-width: 500px;
+    list-style: none;
+    margin: 0;
+}
+
+ul#horizontal-list li,
+ul#horizontal-list a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5vw;
+    color: #fff;
+    transition: all 1.5s ease;
+}
+
+ul#horizontal-list a:hover,
+    ul#horizontal-list a.active {
+    background-color: white;
+    color: #ff634b;
+}
+
+ul.dropdown-menu {
+    color: white;
+    background-color: #2e2e2e;
+}
+
+ul.dropdown-menu li a {
+    color: white;
+}
+
+ul.dropdown-menu li a:hover {
+    background-color: white;
+    color: #ff634b;
+}
+ 
+/*  footer  */
+.footer {
+    background-color: #2e2e2e;
+    color: white;
+    border-top: solid 1px white;
+    display: flex;
+}
+
+footer a{
+    color: white;
+}
+
+footer .row{
+    justify-content: center;
+}
+.first-row a:hover,
+.first-row a.active {
+
+    background-color: white;
+    color: #ff634b;
+    transition: all 1.5s ease;
+}
+
+/* body */
+.container-fluid{
+    min-height: 100%;
+    background-color: #b0acac;
+}
+body{
+    color: white;
+}
+body h1{
+    color: #4158D0;
+}
+
+
+
+/*scrolling clas 1*/
+.scrolling-wrapper{
+	overflow-x: auto;
+}
+
+.card-block{
+
+	background-color: #fff;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	transition: all 0.2s ease-in-out !important;
+	border-radius: 24px;
+}
+
+.card-block:hover{
+    transform: translateY(-5px);
+    box-shadow: none;
+    opacity: 0.9;
+}
+.card{
+	background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+.carousel-item{
+    
+    height: 65%;
+}
+.card-img-top{ 
+    display: block;
+    max-height: 100%;
+}
+
+/* test */
+

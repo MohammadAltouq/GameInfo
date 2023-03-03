@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="../static/css/main.css">
+<title>Home</title>
+</head>
+<body>
+{% include 'base.html' %}
+<div class="container-fluid" style="background-image: linear-gradient(43deg, #4158D0 0%, #1f111e 46%, #f5e4c6 100%);">
+    <div class="container">
+        <h1>Future Release Games</h1>
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+            {% for i in f_rel %}
+            <div class="col-md-3">
+                <div class="card card-block"  style="height: 320px;">
+                    <div id="i{{ i['id'] }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                        {% if i['short_screenshots'] %}
+                            {% for j in i['short_screenshots'] %}
+                                {% if loop.index == 1 %}
+                                    <div class="carousel-item active" style="height:180px;">
+                                        <img src="{{ j['image'] }}" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item" style="height:180px;">
+                                        <img src="{{ j['image'] }}" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="carousel-item active" style="height:180px;">
+                                <img src="../static/images/logo.jpg" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#i{{ i['id'] }}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#i{{ i['id'] }}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i['name'] }}</h5>
+                        <p class="card-text">Release Date: {{ i['released'] }}</p>
+                        {% include 'form_details.html' %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h1>Recent Released Games</h1>
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+            {% for i in n_rel %}
+            <div class="col-md-3">
+                <div class="card card-block" style="height: 320px;">
+                    <div id="i{{ i['id'] }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% if i['short_screenshots'] %}
+                            {% for j in i['short_screenshots'] %}
+                                {% if loop.index == 1 %}
+                                    <div class="carousel-item active" style="height:180px;">
+                                        <img src="{{ j['image'] }}" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item" style="height:180px;">
+                                        <img src="{{ j['image'] }}" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="carousel-item active" style="height:180px;">
+                                <img src="../static/images/logo.jpg" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#i{{ i['id'] }}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#i{{ i['id'] }}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i['name'] }}</h5>
+                        <p class="card-text">Release Date: {{ i['released'] }}</p>
+                        {% include 'form_details.html' %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h1>Top Rated</h1>
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+            {% for i in best %}
+            <div class="col-md-3">
+                <div class="card card-block " style="height: 320px;">
+                    <div id="i{{ i['id'] }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                        {% if i['short_screenshots'] %}
+                            {% for j in i['short_screenshots'] %}
+                                {% if loop.index == 1 %}
+                                    <div class="carousel-item active" style="height:180px;">
+                                        <img src="{{ j['image'] }}" class="card-img-top " alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item" style="height:180px;">
+                                        <img src="{{ j['image'] }}" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="carousel-item active" style="height:180px;">
+                                <img src="../static/images/logo.jpg" class="card-img-top" alt="{{ i['name'] }}" style="max-height:180px;min-height:180px;height:180px;"/>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#i{{ i['id'] }}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#i{{ i['id'] }}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i['name'] }}</h5>
+                        <p class="card-text">Release Date: {{ i['released'] }}</p>
+                        {% include 'form_details.html' %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div> 
+
+
+    
+{% include 'footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

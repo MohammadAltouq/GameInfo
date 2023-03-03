@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="../static/css/main.css">
+<title>Home</title>
+</head>
+<body>
+
+<div class="container-fluid" style="background-color: grey; margin-left: 5%;margin-right: 5%; height: 300px; width: 90%; align-items: center;">
+    <div id="cddfsdf" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        
+        {% for i in len(f_rel) %}
+        {% if loop.index <= 4 %}
+          <div class="carousel-item active" >
+            <div class="row" style="height: 200px;">
+              
+              
+              <div class="col-4"><h1>first</h1></div>
+
+            </div>
+        {% elif loop.index >= 4 and loop.index <= 8  %}
+          <div class="carousel-item">
+            <div class="row" style="height: 200px;">
+              
+              <div class="col-4">second</div>
+
+            </div>
+          </div>
+          {% elif loop.index >= 8 and loop.index <= 12  %}
+          <div class="carousel-item">
+            <div class="row" style="height: 200px;">
+              
+              <div class="col-4">third</div>
+
+
+            </div>
+          </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#cddfsdf" data-bs-slide="prev" style="width: 5%;">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="border: 1px solid rebeccapurple; background-color: black;"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#cddfsdf" data-bs-slide="next" style="width: 5%;">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="border: 1px solid rebeccapurple; background-color: black;"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+</body>
+</html> -->
