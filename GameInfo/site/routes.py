@@ -6,6 +6,9 @@ from GameInfo.helpers import f_rel, n_rel, best_, basic_search, get_detalis, tag
 import ast  
 import cloudinary.uploader
 from werkzeug.security import generate_password_hash
+import base64
+
+
 
 site = Blueprint('site', __name__, template_folder='site_templates') 
 
@@ -74,7 +77,8 @@ def search():
                 return render_template('search.html', form=form, data=result, details_=details_)
             elif details_.validate_on_submit():
                 data = details_.id.data
-                return redirect(url_for('site.details',  data = data))
+                data_str = base64.b64encode(str(data).encode('utf-8')).decode('utf-8')
+                return redirect(url_for('site.details',  data = data_str))
         else:
             result = tag_filter(basic_search(" "))
             return render_template('search.html', form=form, details_=details_, data=result)
@@ -85,9 +89,15 @@ def search():
 @login_required
 def details():
     form = Fav()
-    data = request.args.get('data')
-    res_dict=ast.literal_eval(data)
-    res_dict['detalis'] = get_detalis(res_dict['id'])
+    data =  request.args.get('data')
+    data = base64.b64decode(data).decode('utf-8')
+
+    # res_dict=ast.literal_eval(data)
+    # res_dict['detalis'] = get_detalis(res_dict['id'])
+    res_dict = get_detalis(data)
+    print('----------------------------------')
+    print(res_dict)
+    print('----------------------------------')
     fav_list = Fav_games.query.filter_by(user_token = current_user.token).all()
     if request.method == "POST" and form.validate_on_submit():
         form_data = form.data.data
@@ -102,8 +112,8 @@ def details():
         genres = ','.join(i['name'] for i in data_dict['genres'])
         tags = ','.join(i['name'] for i in data_dict['tags'] if i['language'] == "eng")
         img = ','.join(i['image'] for i in data_dict['short_screenshots'])
-        website = data_dict['detalis']['website']
-        platforms = ','.join(i['platform']['name'] for i in data_dict['detalis']['platforms'])
+        website = data_dict['website']
+        platforms = ','.join(i['platform']['name'] for i in data_dict['platforms'])
         fav = Fav_games(user_token, rawg_id, name, released, genres, tags, img, website, platforms)
         db.session.add(fav)
         db.session.commit()

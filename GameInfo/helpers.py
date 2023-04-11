@@ -15,7 +15,7 @@ def tag_filter(data):
 
 # home page Api related calles
 def f_rel():
-    response = requests.get(f"https://api.rawg.io/api/games?key=d20c0eecee7c4c51960cb2489d65836b&dates={now},2023-08-28&page_size=40&ordering=released")
+    response = requests.get(f"https://api.rawg.io/api/games?key=d20c0eecee7c4c51960cb2489d65836b&dates=2023-03-04,2023-08-28&page_size=40&ordering=released")
     print (f'b_rel\ Used Cache: {response.from_cache}')
     data = response.json()
     return data["results"]
@@ -76,6 +76,7 @@ def stores():
 
 def get_detalis(rawg_id):
     data = detalis(rawg_id)
+    data['short_screenshots'] = screenshots(rawg_id)
     data['wt_buy']= wt_buy(rawg_id)
     return data
 

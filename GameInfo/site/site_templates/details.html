@@ -66,7 +66,7 @@
             
             <div class="col-sm" style="overflow-y:scroll; height: 400px">
                 <h2><b>description</b></h2>
-                <p>{{ data['detalis']['description_raw'] }}</p>
+                <p>{{ data['description_raw'] }}</p>
             </div>
         </div>
         <div class="row" style="border-top: solid 2px white; margin-top: 1px;">
@@ -86,12 +86,12 @@
             </div>
             <div class="col-3">
                 <h3><b>Website</b></h3>
-                <p><a href="{{ data['detalis']['website'] }}" target="_blank"> {{ data['detalis']['website'] }} </a></p>
+                <p><a href="{{ data['website'] }}" target="_blank"> {{ data['website'] }} </a></p>
             </div>
             <div class="col-3">
                 <h3><b>where to buy</b></h3>
-                {% for i in data['detalis']['stores'] %}
-                    {% for j in data['detalis']['wt_buy'] %}
+                {% for i in data['stores'] %}
+                    {% for j in data['wt_buy'] %}
                         {% if i['store']['id'] == j['store_id'] %}
                             <a href="{{ j['url']}}" target="_blank"> {{ i['store']['name'] }} </a><br>
                         {% endif %}
