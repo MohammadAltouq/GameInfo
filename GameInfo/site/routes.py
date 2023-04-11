@@ -95,9 +95,6 @@ def details():
     # res_dict=ast.literal_eval(data)
     # res_dict['detalis'] = get_detalis(res_dict['id'])
     res_dict = get_detalis(data)
-    print('----------------------------------')
-    print(res_dict)
-    print('----------------------------------')
     fav_list = Fav_games.query.filter_by(user_token = current_user.token).all()
     if request.method == "POST" and form.validate_on_submit():
         form_data = form.data.data
