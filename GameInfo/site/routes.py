@@ -8,25 +8,18 @@ import cloudinary.uploader
 from werkzeug.security import generate_password_hash
 import base64
 
-
-
 site = Blueprint('site', __name__, template_folder='site_templates') 
 
-
-
-    # Home_page_data.query.delete()
-    # db.session.commit()
 @site.route('/', methods =['GET', 'POST'])
 def home():
-
-
     details_= Details()
     f = tag_filter(f_rel())
     n = tag_filter(n_rel())
     b = tag_filter(best_())
     if request.method == "POST" and details_.validate_on_submit():
         data = details_.id.data
-        return redirect(url_for('site.details',  data = data))
+        data_str = base64.b64encode(str(data).encode('utf-8')).decode('utf-8')
+        return redirect(url_for('site.details',  data = data_str))
     
     return render_template('index.html', f_rel = f, n_rel = n, best = b, details_=details_)
 
@@ -59,7 +52,6 @@ def profile():
                 db.session.commit()
                 return redirect(url_for('site.profile'))
     except:
-        
         raise Exception('Invalid Form Data: Please Check Your Form')
     return render_template('profile.html',form=form,  user=user, fav_list=fav_list, delete=delete, info=info)
 
@@ -91,13 +83,7 @@ def details():
     form = Fav()
     data =  request.args.get('data')
     data = base64.b64decode(data).decode('utf-8')
-
-    # res_dict=ast.literal_eval(data)
-    # res_dict['detalis'] = get_detalis(res_dict['id'])
     res_dict = get_detalis(data)
-    print('----------------------------------')
-    print(res_dict)
-    print('----------------------------------')
     fav_list = Fav_games.query.filter_by(user_token = current_user.token).all()
     if request.method == "POST" and form.validate_on_submit():
         form_data = form.data.data
