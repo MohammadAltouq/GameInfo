@@ -1,10 +1,12 @@
-# from .models import db
-import requests, datetime, requests_cache
+import requests, requests_cache
+from datetime import timedelta, date
 
 requests_cache.install_cache('github_cache', backend='sqlite', expire_after=86400)
 
-timestamp = datetime.datetime.now()
-now = str(timestamp)[:10]
+last_m = date.today()-timedelta(+60)
+today = date.today()
+tomorrow = date.today()+timedelta(1)
+next_m = date.today()+timedelta(+180)
 
 #filtering unwanted result
 def tag_filter(data):
@@ -15,13 +17,13 @@ def tag_filter(data):
 
 # home page Api related calles
 def f_rel():
-    response = requests.get(f"https://api.rawg.io/api/games?key=d20c0eecee7c4c51960cb2489d65836b&dates=2023-03-04,2023-08-28&page_size=40&ordering=released")
+    response = requests.get(f"https://api.rawg.io/api/games?key=d20c0eecee7c4c51960cb2489d65836b&dates={tomorrow},{next_m}&page_size=40&ordering=released")
     print (f'b_rel\ Used Cache: {response.from_cache}')
     data = response.json()
     return data["results"]
 
 def n_rel():
-    response = requests.get(f"https://api.rawg.io/api/games?key=d20c0eecee7c4c51960cb2489d65836b&dates=2023-01-28,{now}&page_size=40&ordering=-released")
+    response = requests.get(f"https://api.rawg.io/api/games?key=d20c0eecee7c4c51960cb2489d65836b&dates={last_m},{today}&page_size=40&ordering=-released")
     print (f'b_rel\ Used Cache: {response.from_cache}')
     data = response.json()
     return data["results"]
@@ -79,8 +81,3 @@ def get_detalis(rawg_id):
     data['short_screenshots'] = screenshots(rawg_id)
     data['wt_buy']= wt_buy(rawg_id)
     return data
-
-
-
-
-
