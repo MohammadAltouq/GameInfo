@@ -81,8 +81,3 @@ def get_detalis(rawg_id):
     data['short_screenshots'] = screenshots(rawg_id)
     data['wt_buy']= wt_buy(rawg_id)
     return data
-
-
-
-
-
